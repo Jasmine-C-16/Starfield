@@ -22,6 +22,16 @@ void draw()
 		stars[i].show();
 	}
 }
+void mousePressed(){
+	background(0);
+
+	for (int i=0; i<stars.length; i++){
+		stars[i] = new Particle();
+	}
+	stars[0] = new OddballParticle();
+	redraw();
+}
+
 
 class Particle
 {
@@ -44,15 +54,25 @@ class Particle
 	void move(){
 		x += Math.cos(angle)*speed;
 		y += Math.sin(angle)*speed;
+		angle += 0.025;
 		//System.out.println(x + " " + y);
-		if (y>800 || y< -800 || x>800 || x< -800) {
+		if (y>850 || y< -50 || x>850 || x< -50) {
 			y=400;
 			x=400;
 			//xsize += Math.random()*1;
 			//ysize += Math.random()*1;
-			angle = Math.random()*2*Math.PI;
-			speed = Math.random()*2;
+			//angle = Math.random()*2*Math.PI;
+			speed = Math.random()*3;
 		}
+		if (x<400)
+			x--;
+		if (x>400)
+			x++;
+		if (y<400)
+			y--;
+		if (y>400)
+			y++;
+		
 
 	}
 
@@ -67,8 +87,8 @@ class Particle
 class OddballParticle extends Particle//inherits from Particle
 {	
 	OddballParticle(){
-		xsize=5;
-		ysize=5;
+		xsize=10;
+		ysize=10;
 		x = y = 400;
 		r = 255; //(int)(Math.random()*155+100);
 		g = 255; //(int)(Math.random()*155+100);
@@ -80,6 +100,9 @@ class OddballParticle extends Particle//inherits from Particle
 		y+= Math.random()*10-5;
 		xsize+=0.01;
 		ysize+=0.01;
+		x += Math.cos(angle)*speed;
+		y += Math.sin(angle)*speed;
+		angle -=0.1;
 	}
 
 	void show(){
