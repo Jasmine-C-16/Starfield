@@ -1,4 +1,4 @@
-Particle[] stars = new Particle[800];
+Particle[] stars = new Particle[1500];
 
 void setup()
 {
@@ -9,22 +9,19 @@ void setup()
 		stars[i] = new Particle();
 	}
 	stars[0] = new OddballParticle();
-
-
 }
 
 void draw()
 {
 	background(0);
-
 	for (int i=0; i<stars.length; i++){
 		stars[i].move();
 		stars[i].show();
 	}
 }
+
 void mousePressed(){
 	background(0);
-
 	for (int i=0; i<stars.length; i++){
 		stars[i] = new Particle();
 	}
@@ -40,7 +37,6 @@ class Particle
 
 	Particle(){
 		x = y = 400;
-		//y = Math.random()*800;
 		xsize = Math.random()*10;
 		ysize = Math.random()*10;
 		angle = Math.random()*2*Math.PI;
@@ -54,7 +50,7 @@ class Particle
 	void move(){
 		x += Math.cos(angle)*speed;
 		y += Math.sin(angle)*speed;
-		angle += 0.025;
+		angle += 0.05;
 		//System.out.println(x + " " + y);
 		if (y>850 || y< -50 || x>850 || x< -50) {
 			y=400;
@@ -73,7 +69,6 @@ class Particle
 		if (y>400)
 			y++;
 		
-
 	}
 
 	void show(){
